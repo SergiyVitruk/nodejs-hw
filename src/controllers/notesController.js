@@ -29,7 +29,7 @@ export const getAllNotes = async (req, res) => {
     notesQuery.find({ tag: { $eq: tag } });
   }
 
-  const [totalItems, notes] = await Promise.all([
+  const [totalNotes, notes] = await Promise.all([
     notesQuery.clone().countDocuments(),
     notesQuery
       .skip(skip)
@@ -37,12 +37,12 @@ export const getAllNotes = async (req, res) => {
       .sort({ [sortBy]: sortOrder }),
   ]);
 
-  const totalPages = Math.ceil(totalItems / perPage);
+  const totalPages = Math.ceil(totalNotes / perPage);
 
   res.status(200).json({
     page,
     perPage,
-    totalItems,
+    totalNotes,
     totalPages,
     notes,
   });
@@ -76,7 +76,7 @@ export const deleteNote = async (req, res, next) => {
     return;
   }
 
-  res.status(200).send(note);
+  res.status(200).json(note);
 };
 
 export const updateNote = async (req, res, next) => {
