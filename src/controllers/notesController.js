@@ -26,16 +26,11 @@ export const getAllNotes = async (req, res) => {
   const notesQuery = Note.find({ userId: req.user._id });
 
   if (search) {
-    notesQuery.find({
-      $or: [
-        { title: { $regex: search, $options: 'i' } },
-        { content: { $regex: search, $options: 'i' } },
-      ],
-    });
+    notesQuery.where('title').eq(search).or('content').eq(search).exec();
   }
 
   if (tag) {
-    notesQuery.find({ tag: { $eq: tag } });
+    notesQuery.where('tag').eq(tag);
   }
 
   const [totalNotes, notes] = await Promise.all([
@@ -106,4 +101,3 @@ export const deleteNote = async (req, res, next) => {
 
   res.status(200).json(note);
 };
-
