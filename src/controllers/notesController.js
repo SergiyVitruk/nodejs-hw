@@ -17,16 +17,11 @@ export const getAllNotes = async (req, res) => {
   const notesQuery = Note.find();
 
   if (search) {
-    notesQuery.find({
-      $or: [
-        { title: { $regex: search, $options: 'i' } },
-        { content: { $regex: search, $options: 'i' } },
-      ],
-    });
+    notesQuery.where('title').eq(search).or('content').eq(search).exec();
   }
 
   if (tag) {
-    notesQuery.find({ tag: { $eq: tag } });
+    notesQuery.where('tag').eq(tag);
   }
 
   const [totalNotes, notes] = await Promise.all([
