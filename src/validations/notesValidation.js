@@ -12,8 +12,7 @@ export const getAllNotesSchema = {
     perPage: Joi.number().integer().min(5).max(20).default(10),
     search: Joi.string().allow(''),
     tag: Joi.string()
-      .valid(...TAGS)
-      .optional(),
+      .valid(...TAGS),
   }),
 };
 
@@ -50,8 +49,8 @@ export const updateNoteSchema = {
     noteId: Joi.string().custom(objectIdValidator).required(),
   }),
   [Segments.BODY]: Joi.object({
-    title: Joi.string().min(1).max(60),
-    content: Joi.string().max(165).allow(''),
+    title: Joi.string().min(1),
+    content: Joi.string().allow(''),
     tag: Joi.string().valid(...TAGS),
   }).min(1),
 };
