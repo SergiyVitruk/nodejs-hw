@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
+import helmet from 'helmet';
 
 import { errors } from 'celebrate';
 import { connectMongoDB } from './db/connectMongoDB.js';
@@ -23,6 +24,7 @@ app.use(
   }),
 );
 app.use(cors());
+app.use(helmet());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
