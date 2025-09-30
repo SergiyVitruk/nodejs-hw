@@ -54,7 +54,6 @@ export const getNoteById = async (req, res, next) => {
     _id: noteId,
     userId: req.user._id,
   });
-
   if (!note) {
     next(createHttpError(404, 'Note not found'));
     return;
