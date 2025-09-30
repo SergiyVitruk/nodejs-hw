@@ -3,31 +3,59 @@ Node.js Homework - Express Notes API
 Опис
 Мінімальний бекенд на **Express**, який демонструє:
 
-- налаштування базового сервера;
-- використання middleware (`cors`, `express.json`, `pino-http`);
-- обробку 404 та 500 помилок;
-- приклади REST-роутів для колекції нотаток.
-
-Проєкт реалізований у рамках навчального завдання.
+- Налаштування базового сервера;
+- Використання middleware (`cors`, `express.json`, `pino-http`);
+- Обробку 404 та 500 помилок;
+- Приклади REST-роутів для колекції нотаток.
+- Роботу з базою даних MongoDB через Mongoose;
+- Реалізацію CRUD-операцій;
+- Пагінацію, текстовий пошук і валідацію запитів через celebrate.
 
 Маршрути
 
-- `GET /notes`
-  Відповідь:
+- `GET /`
 
   ```json
-  { "message": "Retrieved all notes" }
+  { "message": "Hello user" }
   ```
 
-- `GET /notes/:noteId`
-  Відповідь:
+- `GET /notes`
 
   ```json
-  { "message": "Retrieved note with ID: 123" }
+  { "Retrieved all notes" }
+  ```
+Параметри рядка запиту (query):
+page – номер сторінки (за замовчуванням 1)
+perPage – кількість нотаток на сторінці (за замовчуванням 10)
+tag – фільтр за тегом нотатки
+search – текстовий пошук по title та content
+
+- `GET /notes/:noteId`
+
+  ```json
+  { "Retrieved note with ID" }
+  ```
+
+- `POST /notes/`
+
+  ```json
+  { "Create new note" }
+  ```
+
+- `DELETE /notes/:noteId`
+
+  ```json
+  { "Delete note with ID" }
+  ```
+
+- `PATCH /notes/:noteId`
+
+  ```json
+  { "Update note with ID" }
   ```
 
 - `GET /test-error`
-  Відповідь:
+
   ```json
   { "message": "Simulated server error" }
   ```
@@ -35,3 +63,11 @@ Node.js Homework - Express Notes API
   Реалізовано обробку:
 404 Not Found
 500 Internal Server Error
+
+Використані технології
+Node.js, Express
+MongoDB, Mongoose
+dotenv, cors
+pino-http
+celebrate (Joi)
+createHttpError
