@@ -60,7 +60,7 @@ search – текстовий пошук по title та content
   ```
 Користувачі
 
-  - `POST /auth/register`
+- `POST /auth/register`
 
   ```json
   { "Create user" }
@@ -84,7 +84,7 @@ search – текстовий пошук по title та content
   { "Refresh token" }
   ```
 
-  - `POST /auth/request-reset-email`
+- `POST /auth/request-reset-email`
 
   ```json
   { "Sending a password recovery email" }
@@ -96,7 +96,7 @@ search – текстовий пошук по title та content
   { "Reset password" }
   ```
 
-  - `PATCH /users/me/avatar`
+- `PATCH /users/me/avatar`
 
   ```json
   { "Change avatar" }
