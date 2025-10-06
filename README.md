@@ -6,8 +6,11 @@ Node.js Homework - Express Notes API
 - Налаштування базового сервера;
 - Використання middleware (`cors`, `express.json`, `pino-http`);
 - Обробку 404 та 500 помилок;
-- Приклади REST-роутів для колекції нотаток.
-- Роботу з базою даних MongoDB через Mongoose;
+- побудову REST API з аутентифікацією користувачів;
+- роботу з базою даних MongoDB (Mongoose);
+- керування сесіями та кукі;
+- відправку листів через SMTP (Brevo);
+- завантаження зображень користувачів у Cloudinary.
 - Реалізацію CRUD-операцій;
 - Пагінацію, текстовий пошук і валідацію запитів через celebrate.
 
@@ -19,6 +22,8 @@ Node.js Homework - Express Notes API
   { "message": "Hello user" }
   ```
 
+  Нотатки
+  
 - `GET /notes`
 
   ```json
@@ -53,6 +58,51 @@ search – текстовий пошук по title та content
   ```json
   { "Update note with ID" }
   ```
+Користувачі
+
+  - `POST /auth/register`
+
+  ```json
+  { "Create user" }
+  ```
+
+- `POST /auth/login`
+
+  ```json
+  { "Login user" }
+  ```
+
+- `POST /auth/logout`
+
+  ```json
+  { "Logout user" }
+  ```
+
+- `POST /auth/refresh`
+
+  ```json
+  { "Refresh token" }
+  ```
+
+  - `POST /auth/request-reset-email`
+
+  ```json
+  { "Sending a password recovery email" }
+  ```
+
+- `POST /auth/reset-password`
+
+  ```json
+  { "Reset password" }
+  ```
+
+  - `PATCH /users/me/avatar`
+
+  ```json
+  { "Change avatar" }
+  ```
+
+Тест-еррор
 
 - `GET /test-error`
 
@@ -68,6 +118,15 @@ search – текстовий пошук по title та content
 Node.js, Express
 MongoDB, Mongoose
 dotenv, cors
-pino-http
-celebrate (Joi)
-createHttpError
+express.json() — парсинг JSON;
+cors() — підтримка крос-доменних запитів;
+pino-http — логування запитів;
+authenticate — перевірка сесії та access токена;
+multer — обробка файлів;
+helmet (опціонально) — базовий захист заголовків.
+bcrypt — хешування паролів;
+jsonwebtoken — генерація JWT-токенів для скидання паролю;
+nodemailer — відправка листів через SMTP (Brevo);
+cookie-parser — робота з кукі;
+http-errors — централізована обробка помилок;
+celebrate (Joi) — валідація запитів.
