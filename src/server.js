@@ -41,9 +41,7 @@ app.get('/test-error', (req, res) => {
 });
 
 app.use(notFoundHandler);
-
 app.use(errors());
-
 app.use(errorHandler);
 
 await connectMongoDB();
